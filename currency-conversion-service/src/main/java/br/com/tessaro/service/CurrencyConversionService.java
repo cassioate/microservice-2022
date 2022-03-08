@@ -17,6 +17,7 @@ public class CurrencyConversionService {
 	
 	// Utilizando Feign
 	public CurrencyConversion conversion(String from, String to, BigDecimal quantity) {
+		// Aqui ele está indo buscar a informação no outro microservice(currency-exchange-service), através do proxy CurrencyExchangeProxy
 		ResponseEntity<CurrencyConversion> currencyConversion = proxy.retrieveExcahngeValue(from, to);
 		CurrencyConversion resposneEntity = currencyConversion.getBody();
 		
