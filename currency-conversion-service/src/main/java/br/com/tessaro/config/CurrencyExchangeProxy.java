@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.tessaro.model.CurrencyConversion;
 
-@FeignClient(name="currency-exchange-service", url="localhost:8000/currency-exchange/")
+//@FeignClient(name="currency-exchange-service", url="localhost:8000/currency-exchange/")
+//Abaixo teremos o nome que estara registrado no eureka 'currency-exchange-service' 
+//somado ao path:'/currency-exchange/', do controller no outro microservice que estou tentado acessar
+@FeignClient(name="currency-exchange-service/currency-exchange/")
 public interface CurrencyExchangeProxy {
 	
 // Deve criar uma interface para o metodo get que estara presente no controller do microservice que estou fazendo a requisicao, nesse caso utilizei o CurrencyConversion, 
