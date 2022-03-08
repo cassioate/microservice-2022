@@ -18,7 +18,7 @@ import br.com.tessaro.service.CurrencyConversionService;
 public class CurrencyConversionController {
 
 	@Autowired
-	CurrencyConversionService currencyService;
+	private CurrencyConversionService currencyService;
 	
 	@GetMapping("from/{from}/to/{to}/quantity/{quantity}")
 	public ResponseEntity<CurrencyConversion> caculateCurrencyConversion (@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
