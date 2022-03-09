@@ -20,15 +20,15 @@ public class CurrencyExchangeService {
 	
 	public CurrencyExchange retrieveExchangeValue(String from, String to) {
 	
-	CurrencyExchange currencyExchange = currencyRepository.findByFromAndTo(from, to);
+		CurrencyExchange currencyExchange = currencyRepository.findByFromAndTo(from, to);
+		
+		if (currencyExchange == null) {
+			throw new RuntimeException("Unable to find data");
+		} else {
+			currencyExchange.setEnvironment(environment.getProperty("local.server.port"));
+		}
 	
-	if (currencyExchange == null) {
-		throw new RuntimeException("Unable to find data");
-	} else {
-		currencyExchange.setEnvironment(environment.getProperty("local.server.port"));
-	}
-
-	return currencyRepository.save(currencyExchange);
+		return currencyRepository.save(currencyExchange);
 	}
 
 	

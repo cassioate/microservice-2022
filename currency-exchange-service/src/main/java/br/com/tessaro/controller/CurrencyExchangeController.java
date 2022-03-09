@@ -1,6 +1,7 @@
 package br.com.tessaro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class CurrencyExchangeController {
 	private CurrencyExchangeService currencyService;
 	
 	@GetMapping("from/{from}/to/{to}")
+	@Cacheable(value="retrieveExcahngeValueCache")
 	public ResponseEntity<CurrencyExchange> retrieveExcahngeValue(@PathVariable String from, @PathVariable String to) {
 		CurrencyExchange currencyExchange = currencyService.retrieveExchangeValue(from, to);
 		return new ResponseEntity<>(currencyExchange, HttpStatus.OK);
