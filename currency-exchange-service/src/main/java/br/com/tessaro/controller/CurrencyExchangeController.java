@@ -20,7 +20,9 @@ public class CurrencyExchangeController {
 	private CurrencyExchangeService currencyService;
 	
 	@GetMapping("from/{from}/to/{to}")
-	@Cacheable(value="retrieveExcahngeValueCache")
+	@Cacheable(value="retrieveExcahngeValueCache") // Para limpar o cache ao realizar um cadastro, deve-se utilizar a anotação @CacheEvict(value = "retrieveExcahngeValueCache", 
+	// allEntries = true) em cima do end point que precisa realziar essa atualização nos caches
+	// fazendo assim com que o cache seja limpado em caso de modificação nesse "produto" que está em cache via outro end point.
 	public ResponseEntity<CurrencyExchange> retrieveExcahngeValue(@PathVariable String from, @PathVariable String to) {
 		CurrencyExchange currencyExchange = currencyService.retrieveExchangeValue(from, to);
 		return new ResponseEntity<>(currencyExchange, HttpStatus.OK);
