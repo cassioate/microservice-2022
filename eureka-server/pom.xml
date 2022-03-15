@@ -18,6 +18,21 @@
 		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
 	<dependencies>
+<!-- 		Dependencia do zipkin -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+<!-- 		Dependencia do zipkin -->
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.amqp</groupId> -->
+<!-- 			<artifactId>spring-rabbit</artifactId> -->
+<!-- 		</dependency> -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
@@ -75,6 +90,10 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<image>
+						<name>cassioate/${project.artifactId}:${project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 				</configuration>
 			</plugin>
 		</plugins>
